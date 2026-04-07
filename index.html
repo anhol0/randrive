@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Randrive</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css"></link>
+        <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+          <link rel="icon" type="image/x-icon" href="./favicon.jpeg">
+    </head>
+    <body>
+        <h1>Randrive</h1>
+        <div class="layout">
+            <div class="form_panel">
+                <div class="api_key_field">
+                    <div class="message">Grab your API key at <a href="https://geocode.maps.co/account">geocode.maps.co</a></div>         
+                    <input type="text" class="api_key" placeholder="Enter your API key"> 
+                </div>        
+
+                <div class="less">
+                    <input type="text" class="location" placeholder="Initial location">
+                    <button class="btnMore">More</button>
+                </div>
+
+                <div class="more">
+                    <input type="text" class="street" placeholder="Street">
+                    <input type="text" class="city" placeholder="City">
+                    <input type="text" class="state" placeholder="State">
+                    <input type="text" class="country" placeholder="Country">
+                    <input type="text" class="postalcode" placeholder="Postalcode">
+                    <button class="btnLess">Less</button>
+                </div>
+                
+                <input type="text" class="radius" placeholder="Radius of random search">
+                <div class="submit">
+                    <div class="api_err"></div>
+                    <input type="submit" class="generate" value="Generate">
+                </div>
+            </div>
+
+            <div class="osm_map"></div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
