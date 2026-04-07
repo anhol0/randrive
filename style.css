@@ -36,7 +36,8 @@ h1 {
 
 .less,
 .more,
-.submit {
+.submit,
+.radius_field {
     display: grid;
     gap: 12px;
 }
@@ -91,8 +92,14 @@ button:hover,
     background: #1d4ed8;
 }
 
-.radius {
+.radius_field {
+    display: flex;
+    align-items: flex-start; 
     margin-bottom: 20px;
+}
+
+.radius_btn {
+    width: 10%;
 }
 
 .api_err {

@@ -1,5 +1,6 @@
 const LocationEl = document.querySelector(".location");
 const RadiusEl = document.querySelector(".radius");
+const RadiusUnitSwich = document.querySelector(".radius_btn");
 const GenerateEl = document.querySelector(".generate");
 const ButtonLess = document.querySelector(".btnLess");
 const ButtonMore = document.querySelector(".btnMore");
@@ -13,7 +14,7 @@ const map = L.map(MapEl);
 const markerLayer = L.layerGroup().addTo(map);
 
 let detailed = false;
-
+let km = true;
 // Listeners 
 
 GenerateEl.addEventListener("click", GetCoordinates);
@@ -30,6 +31,11 @@ ButtonLess.addEventListener("click", () => {
     detailed = false;
 });
 
+RadiusUnitSwich.addEventListener("click", () => {
+    km = !km;
+    km == true ? RadiusUnitSwich.innerText = "KM" : RadiusUnitSwich.innerText = "MI";
+});
+
 window.addEventListener("load", () => {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -43,7 +49,9 @@ async function GetCoordinates() {
         return;
     }
     const loc = LocationEl.value;
-    const radius = RadiusEl.value;
+    let radius = 0;
+    km == true ? radius = RadiusEl.value : radius = RadiusEl.value * 1.609;
+
     let coordinates = [];
 
     // Getting geocoded coordinates 
@@ -108,7 +116,13 @@ function addMap(x, y) {
     var target = L.latLng(y, x); 
     map.setView(target, 10);
     markerLayer.clearLayers();
-    L.marker(target).addTo(markerLayer);
+    L.marker(target)
+    .addTo(markerLayer)
+    .bindPopup(`<button 
+            onclick="location.href='https://www.google.com/maps/search/?api=1&query=${y}%2C${x}'" type="button">
+            Open in Google Maps
+    </button>`)
+    .openPopup();
 }
 
 async function QueryCoordinates(query) {
